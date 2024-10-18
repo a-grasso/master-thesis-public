@@ -1,0 +1,17 @@
+services:
+  lambda:
+    build:
+      context: ./sqs-lambda
+      dockerfile: Dockerfile
+    environment:
+      AWS_LAMBDA_RUNTIME_API: "lrss:9001"
+
+  lrss:
+    build:
+      context: ./lrss-sqs
+      dockerfile: Dockerfile
+    ports:
+      - "9001:9001"
+    environment:
+      PORT: 9001
+      SQS_URL: "<<SQS_URL>>"
