@@ -13,3 +13,5 @@ For all other deployment variants (standalone and standalone with Lambda Web Ada
 Two Dockerfiles (`Dockerfile` and `lwa.Dockerfile`) are provided for each of the deployment variants:
 1. `Dockerfile`: Standalone or Lambda with ALGNHSA
 2. `lwa.Dockerfile`: Standalone on Lambda with Lambda Web Adapter
+
+This application goes hand in hand with the processing application in `./../recommended-processing-approach`.
