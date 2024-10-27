@@ -1,0 +1,30 @@
+version: '3.8'  # Ensure the version is compatible with deploy settings
+
+services:
+  gofib:
+    image: ghcr.io/a-grasso/gofib-lwa:latest
+    ports:
+      - "80:80"
+    environment:
+      PORT: 80
+      OTEL_SERVICE_NAME: "gofib-hetzner"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "https://otlp-gateway-prod-eu-west-2.grafana.net/otlp"
+      OTEL_EXPORTER_OTLP_HEADERS: "Authorization=Basic <TOKEN>"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2GB
+  gos3:
+    image: ghcr.io/a-grasso/gos3-lwa:latest
+    ports:
+      - "80:80"
+    environment:
+      PORT: 80
+      OTEL_SERVICE_NAME: "gos3-hetzner"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "https://otlp-gateway-prod-eu-west-2.grafana.net/otlp"
+      OTEL_EXPORTER_OTLP_HEADERS: "Authorization=Basic <TOKEN>"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+      AWS_ACCESS_KEY_ID: "<ACCESS_KEY>"
+      AWS_SECRET_ACCESS_KEY: "<SECRET_KEY>"
