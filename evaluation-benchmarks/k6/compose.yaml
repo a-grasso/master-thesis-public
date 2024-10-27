@@ -1,0 +1,23 @@
+# compose.yaml
+services:
+  influxdb2:
+    image: influxdb:2
+    ports:
+      - 8086:8086
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: user
+      DOCKER_INFLUXDB_INIT_PASSWORD: password
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN_FILE: token
+      DOCKER_INFLUXDB_INIT_ORG: evaluation-benchmarks
+      DOCKER_INFLUXDB_INIT_BUCKET: k6
+    volumes:
+      - type: volume
+        source: influxdb2-data
+        target: /var/lib/influxdb2
+      - type: volume
+        source: influxdb2-config
+        target: /etc/influxdb2
+volumes:
+  influxdb2-data:
+  influxdb2-config:
