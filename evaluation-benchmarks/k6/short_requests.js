@@ -14,14 +14,6 @@ export let options = {
   tags: {
     request_type: 'short',
   },
-  thresholds: {
-    'http_req_duration{scenario:final_breakpoint}': [
-      {
-        threshold: 'p(95) < 2000', // 100 times the max tolerated server-side duration of 20ms, thens its dead for the user
-        abortOnFail: true,
-        delayAbortEval: "5m"
-      }],
-  },
 }
 
 let scenarios = {
@@ -46,18 +38,6 @@ let scenarios = {
 
     vus: 1,
     duration: '30m',
-  },
-  final_breakpoint: { // when does the service break
-    executor: 'ramping-arrival-rate', //Assure load increase if the system slows
-    exec: 'gofib',
-    env: {
-      K6_SCENARIO: 'final_breakpoint',
-    },
-
-    stages: [
-      { duration: '1h', target: 10000 }, // just slowly ramp-up to a HUGE load
-    ],
-    preAllocatedVUs: 10000,
   },
   final_spike: { // scalability of the service in how spikes are handled
     executor: 'ramping-arrival-rate',

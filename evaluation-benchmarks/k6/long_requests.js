@@ -1,5 +1,5 @@
 export { gos3 } from './gos3.js';
-import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.2/index.js';
+import {textSummary} from 'https://jslib.k6.io/k6-summary/0.0.2/index.js';
 
 const env_file = open(`./env.json`)
 const payload = open(`gos3-input.json`)
@@ -14,14 +14,6 @@ export let options = {
   scenarios: {}, // to be set later
   tags: {
     request_type: 'long',
-  },
-  thresholds: {
-    'http_req_duration{scenario:final_breakpoint}': [
-      {
-        threshold: "p(95) < 33000", // 3 times the max tolerated server-side duration of 11s, thens its dead for the user
-        abortOnFail: true,
-        delayAbortEval: "5m"
-      }],
   },
 }
 
@@ -52,20 +44,7 @@ let scenarios = {
     duration: "30m",
     gracefulStop: "15s",
   },
-  final_breakpoint: {
-    executor: 'ramping-arrival-rate',
-    exec: 'gos3',
-    env: {
-      BUCKET: 'deplomni-performance-gos3',
-      K6_SCENARIO: 'final_breakpoint',
-    },
-
-    stages: [
-      { duration: '1h', target: 100 }, // just slowly ramp-up to a HUGE load
-    ],
-    preAllocatedVUs: 1000,
-  },
- /* final_spike: { THIS SCENARIO IS NOT USED!!!
+  final_spike: {
     executor: 'ramping-arrival-rate',
     exec: 'gos3',
     env: {
@@ -80,7 +59,7 @@ let scenarios = {
     ],
     preAllocatedVUs: 500,
     gracefulStop: "15s",
-  },*/
+  },
 }
 
 if (__ENV.scenario) {
