@@ -191,7 +191,7 @@ if [ "$run_short" = true ]; then
     HETZNER_VM="<APPLICATION_ENDPOINT_URL>"
 
     endpoints_short=( "$GOFIB_ECS" "$HETZNER_VM" "$GOFIB_LAMBDA" "$GOFIB_LWA" "$GOFIB_AR")
-    scenarios_short=("final_constant_vu" "final_long_constant_rate" "final_breakpoint" "final_spike")
+    scenarios_short=("final_constant_vu" "final_long_constant_rate" "final_spike")
 
     run_scenarios endpoints_short[@] scenarios_short[@] "short_requests.js"
 fi
@@ -210,7 +210,7 @@ if [ "$run_long" = true ]; then
     HETZNER_VM="<APPLICATION_ENDPOINT_URL>"
 
     endpoints_long=( "$HETZNER_VM" "$GOS3_LAMBDA" "$GOS3_LWA" "$GOS3_AR" )
-    scenarios_long=( "final_constant_vu" "final_constant_rate_1_per_second" "final_breakpoint")
+    scenarios_long=( "final_constant_vu" "final_constant_rate_1_per_second")
 
     run_scenarios endpoints_long[@] scenarios_long[@] "long_requests.js"
 fi
