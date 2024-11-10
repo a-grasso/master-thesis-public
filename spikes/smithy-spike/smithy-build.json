@@ -1,0 +1,26 @@
+{
+    "version": "1.0",
+    "projections": {
+        "pokemon-service-server-sdk": {
+            "imports": [
+              "./model/weather.smithy"
+            ],
+            "plugins": {
+              "rust-server-codegen": {
+                "runtimeConfig": {
+                  "relativePath": "/home/anto/projects/smithy-rs/rust-runtime"
+                },
+                "codegen": {
+                },
+                "service": "com.aws.example#PokemonService",
+                "module": "pokemon-service-server-sdk",
+                "moduleVersion": "0.0.1",
+                "moduleDescription": "test",
+                "moduleAuthors": [
+                  "protocoltest@example.com"
+                ]
+              }
+            }
+          }
+    }
+}

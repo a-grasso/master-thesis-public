@@ -1,0 +1,36 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+
+exporters:
+  logging:
+  otlphttp/grafanacloud:
+    endpoint: https://otlp-gateway-prod-eu-west-2.grafana.net/otlp
+    headers:
+      "authorization": "Basic <TOKEN>"
+  otlp/honeycomb:
+    endpoint: https://api.honeycomb.io:443
+    headers:
+      "x-honeycomb-team": "0hFqCTAWyF3cs0ecXPwhqF"
+
+service:
+  pipelines:
+    traces:
+      receivers: [ otlp ]
+      processors: [ batch ]
+      exporters: [ logging, otlphttp/grafanacloud, otlp/honeycomb ]
+    metrics:
+      receivers: [ otlp ]
+      processors: [ batch ]
+      exporters: [ logging, otlphttp/grafanacloud ]
+    logs:
+      receivers: [ otlp ]
+      processors: [ batch ]
+      exporters: [ logging, otlphttp/grafanacloud ]

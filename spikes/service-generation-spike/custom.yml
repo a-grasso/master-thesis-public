@@ -1,0 +1,71 @@
+version: 1.0
+meta:
+  title: Account Service
+  version: 1.0.0
+  description: This service is in charge of processing user signups
+use_cases:
+  - title: Get User
+    description: A user requests its information
+    serve:
+      input:
+        type: string
+        description: Email of the user
+      output:
+        type: object
+        description: UserObject
+        properties:
+          displayName:
+            type: string
+            description: Name of the user
+          email:
+            type: string
+            format: email
+            description: Email of the user
+    side_effects:
+      fetch: database
+  - title: User Creation
+    description: A user signs up for an account with its email
+    serve:
+      input:
+        type: string
+        description: Email of the user
+      output:
+        type: object
+        description: UserObject
+        properties:
+          displayName:
+            type: string
+            description: Name of the user
+          email:
+            type: string
+            format: email
+            description: Email of the user
+    side_effects:
+      store: database
+      pass:
+        downstream:
+          type: queue
+          ref: UserSignups
+  - title: User Signup Auditing
+    description: User Signups are audited
+    consume:
+      upstream:
+        type: queue
+        ref: UserSignups
+      input:
+        type: object
+        description: UserObject
+        properties:
+          email:
+            type: string
+            format: email
+            description: Email of the user
+          timestamp:
+            type: date-time
+            description: Date and time when the message was sent i.e user signed up.
+    side_effects: 
+      store: database
+      pass:
+        downstream:
+          type: queue
+          ref: UserSignupsAudit

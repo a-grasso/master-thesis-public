@@ -1,0 +1,38 @@
+###
+POST https://sqbpjrvn6wbnwckjlq3epblf5a0taxso.lambda-url.us-east-1.on.aws/post
+Content-Type: application/json
+
+{
+  "name": "John"
+}
+
+###
+POST https://sqbpjrvn6wbnwckjlq3epblf5a0taxso.lambda-url.us-east-1.on.aws/get
+
+###
+POST localhost:6969/post
+Content-Type: application/json
+
+{
+  "name": "John"
+}
+
+###
+POST https://qj2quwhc46btqtzi3sq4betmba0awxqv.lambda-url.us-east-1.on.aws/post
+Content-Type: application/json
+
+{
+  "name": "asd"
+}
+
+### custom-runtime-docker-test
+GET https://5cvj7qaeodi36oqslvgzynhyde0vftwx.lambda-url.us-east-1.on.aws/get
+
+#### custom-runtime-aio
+GET https://anyzetnyvtiwbqjaxvtvmkslvq0dolou.lambda-url.us-east-1.on.aws/
+
+### us
+GET https://m4zivlbqghqli6rphqfju2znga0dchjj.lambda-url.us-east-1.on.aws/get
+
+### eu
+GET https://4uehp3ie5gwa7dfaorm23kftfq0uqoti.lambda-url.eu-central-1.on.aws/get

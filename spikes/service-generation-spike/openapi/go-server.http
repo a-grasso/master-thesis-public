@@ -1,0 +1,13 @@
+POST http://localhost:8080/v1/pets
+Content-Type: application/json
+
+{
+  "name": "name",
+  "id": 1,
+  "tag": "tag"
+}
+
+
+###
+
+GET https://vvhzr26luhnd7jjvozjqdjwhe40ncect.lambda-url.us-east-1.on.aws/v1/pets

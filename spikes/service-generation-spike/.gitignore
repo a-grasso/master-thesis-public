@@ -1,0 +1,4 @@
+.idea/*
+
+/openapi/gen/go-server/
+asyncapi/gen

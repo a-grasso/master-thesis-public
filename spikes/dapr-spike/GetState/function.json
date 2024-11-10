@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "authLevel": "Anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "route": "state/{key}",
+      "name": "req",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "daprState",
+      "direction": "in",
+      "dataType": "string",
+      "name": "stateIn",
+      "stateStore": "asd",
+      "key": "{key}"
+    }
+  ],
+  "scriptFile": "../dist/GetState/index.js"
+}

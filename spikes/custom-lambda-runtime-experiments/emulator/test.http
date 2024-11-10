@@ -1,0 +1,2 @@
+### Get an invocation
+GET http://localhost/2018-06-01/runtime/invocation/next

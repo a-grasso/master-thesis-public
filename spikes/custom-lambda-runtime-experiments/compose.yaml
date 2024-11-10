@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  grafana-lgtm:
+    image: grafana/otel-lgtm
+    ports: # Grafana UI
+      - "3000:3000"
+      # OpenTelemetry gRPC endpoint
+      - "4317:4317"
+      # OpenTelemetry HTTP endpoint
+      - "4318:4318"
+    environment: # Allow anonymous access to the Grafana UI
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"

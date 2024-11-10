@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "authLevel": "Anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "route": "state/{key}",
+      "name": "req",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "daprState",
+      "direction": "out",
+      "dataType": "string",
+      "name": "stateOut",
+      "stateStore": "asd",
+      "key": "{key}"
+    }
+  ],
+  "scriptFile": "../dist/SaveState/index.js"
+}
